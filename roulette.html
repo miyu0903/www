@@ -35,7 +35,7 @@
 </head>
 <body>
   <h1>🍴 晩ごはんルーレット 🎰</h1>
-  <canvas id="wheel" width="400" height="400"></canvas><br>
+  <canvas id="wheel" width="500" height="500"></canvas><br>
   <button onclick="spin()">回す！</button>
   <div id="result"></div>
 
@@ -62,32 +62,46 @@
     let spinning = false;
 
     function drawWheel() {
+      const radius = 200; // ルーレットの半径
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       for (let i = 0; i < size; i++) {
         const startAngle = arc * i + angle;
         const endAngle = startAngle + arc;
+
+        // セクター描画
         ctx.beginPath();
-        ctx.moveTo(200, 200);
-        ctx.arc(200, 200, 200, startAngle, endAngle);
+        ctx.moveTo(250, 250);
+        ctx.arc(250, 250, radius, startAngle, endAngle);
         ctx.fillStyle = i % 2 === 0 ? "#ffe6ee" : "#ffccd9";
         ctx.fill();
+
+        // 枠線（白）
+        ctx.strokeStyle = "#fff";
+        ctx.lineWidth = 1;
         ctx.stroke();
 
+        // === 円の外にラベルを描画 ===
+        const midAngle = startAngle + arc / 2;
+        const labelRadius = radius + 30; // 円の外に出す距離
+        const x = 250 + Math.cos(midAngle) * labelRadius;
+        const y = 250 + Math.sin(midAngle) * labelRadius;
+
         ctx.save();
-        ctx.translate(200, 200);
-        ctx.rotate(startAngle + arc / 2);
-        ctx.textAlign = "right";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         ctx.fillStyle = "#333";
-        ctx.font = "12px sans-serif";
-        ctx.fillText(menus[i], 180, 5);
+        ctx.font = "13px sans-serif";
+        ctx.fillText(menus[i], x, y);
         ctx.restore();
       }
 
       // 三角マーカー
       ctx.fillStyle = "#ff0000";
       ctx.beginPath();
-      ctx.moveTo(200, 0);
-      ctx.lineTo(190, 20);
-      ctx.lineTo(210, 20);
+      ctx.moveTo(250, 20);
+      ctx.lineTo(240, 40);
+      ctx.lineTo(260, 40);
       ctx.closePath();
       ctx.fill();
     }
@@ -103,7 +117,6 @@
         const progress = (time - start) / duration;
         if (progress < 1) {
           angle = (spinAngle * (1 - Math.pow(progress, 3))) * Math.PI / 180;
-          ctx.clearRect(0, 0, 400, 400);
           drawWheel();
           requestAnimationFrame(animate);
         } else {

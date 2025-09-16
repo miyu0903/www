@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>晩ごはんルーレット</title>
+  <style>
+    body { 
+      font-family: "Hiragino Maru Gothic ProN", sans-serif; 
+      text-align: center; 
+      padding: 30px; 
+      background: #fffafc;
+    }
+    h1 { color: #ff6699; }
+    canvas {
+      margin-top: 20px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 30px;
+      margin-top: 20px;
+      background: #ffccdd;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover { background: #ff99bb; }
+    #result {
+      font-size: 24px;
+      margin-top: 30px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍴 晩ごはんルーレット 🎰</h1>
+  <canvas id="wheel" width="400" height="400"></canvas><br>
+  <button onclick="spin()">回す！</button>
+  <div id="result"></div>
+
+  <script>
+    const menus = [
+      "サバの塩焼き定食","肉じゃが","鶏の照り焼き","生姜焼き","豚汁＋おにぎり","サーモンのホイル焼き","鯖味噌煮","親子丼","天ぷら盛り合わせ","筑前煮",
+      "ぶり大根","さばの竜田揚げ","いわしの梅煮","だし巻き卵＋焼き魚定食","かき揚げそば","鶏団子の塩ちゃんこ鍋","湯豆腐","ほっけの開き","うな丼","茶碗蒸し＋炊き込みご飯",
+      "ハンバーグ","オムライス","グラタン","ポークソテー","ビーフシチュー","ロールキャベツ","チキン南蛮","ミートソーススパゲッティ","ペペロンチーノ","カルボナーラ",
+      "チキンカツ","メンチカツ","ポテトコロッケ","ローストビーフ","ステーキ","ドリア","フィッシュフライ","キッシュ","サンドイッチ","シーフードパエリア",
+      "餃子定食","麻婆豆腐","青椒肉絲","酢豚","回鍋肉","エビチリ","八宝菜","担々麺","天津飯","油淋鶏",
+      "五目炒飯","かに玉","よだれ鶏","焼売","豆苗炒め","黒酢酢豚","春巻き","干し海老と青菜炒め","四川火鍋","レタス包み",
+      "チキンカレー","ビーフカレー","グリーンカレー","ガパオライス","タコライス","フォー","生春巻き＋フォーボー","スープカレー","ナシゴレン","キーマカレー",
+      "トムヤムクン","パッタイ","バターチキンカレー","マトンカレー","チャーハン","ココナッツカレー","カオマンガイ","スンドゥブチゲ","チーズタッカルビ","プルコギ",
+      "牛丼","カツ丼","天丼","海鮮丼","冷やし中華","ざるそば＋天ぷら","ラーメン","うどん","ちゃんぽん","石焼ビビンバ",
+      "親子うどん","牛すき焼き鍋","鮭とイクラの親子丼","豚キムチ炒め＋白ごはん","カルビ丼","冷しゃぶサラダうどん","鶏南蛮そば","韓国冷麺","牡蠣フライ定食","焼き鳥丼"
+    ];
+
+    const canvas = document.getElementById("wheel");
+    const ctx = canvas.getContext("2d");
+    const size = menus.length;
+    const arc = 2 * Math.PI / size;
+    let angle = 0;
+    let spinAngle = 0;
+    let spinning = false;
+
+    function drawWheel() {
+      for (let i = 0; i < size; i++) {
+        const startAngle = arc * i + angle;
+        const endAngle = startAngle + arc;
+        ctx.beginPath();
+        ctx.moveTo(200, 200);
+        ctx.arc(200, 200, 200, startAngle, endAngle);
+        ctx.fillStyle = i % 2 === 0 ? "#ffe6ee" : "#ffccd9";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(200, 200);
+        ctx.rotate(startAngle + arc / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#333";
+        ctx.font = "12px sans-serif";
+        ctx.fillText(menus[i], 180, 5);
+        ctx.restore();
+      }
+
+      // 三角マーカー
+      ctx.fillStyle = "#ff0000";
+      ctx.beginPath();
+      ctx.moveTo(200, 0);
+      ctx.lineTo(190, 20);
+      ctx.lineTo(210, 20);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+      spinAngle = Math.random() * 5000 + 2000; // 回転角度
+      const duration = 4000; // 4秒回転
+      const start = performance.now();
+
+      function animate(time) {
+        const progress = (time - start) / duration;
+        if (progress < 1) {
+          angle = (spinAngle * (1 - Math.pow(progress, 3))) * Math.PI / 180;
+          ctx.clearRect(0, 0, 400, 400);
+          drawWheel();
+          requestAnimationFrame(animate);
+        } else {
+          spinning = false;
+          const selected = Math.floor(size - (angle / arc) % size) % size;
+          document.getElementById("result").innerHTML = "👉 今日の晩ごはんは <b>" + menus[selected] + "</b>！";
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    drawWheel();
+  </script>
+</body>
+</html>

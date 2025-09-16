@@ -81,19 +81,12 @@
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // === 円の外にラベルを描画 ===
-        const midAngle = startAngle + arc / 2;
-        const labelRadius = radius + 30; // 円の外に出す距離
-        const x = 250 + Math.cos(midAngle) * labelRadius;
-        const y = 250 + Math.sin(midAngle) * labelRadius;
-
-        ctx.save();
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = "#333";
-        ctx.font = "13px sans-serif";
-        ctx.fillText(menus[i], x, y);
-        ctx.restore();
+        // ★ ラベル描画はしない（値は保持したまま）
+        // const midAngle = startAngle + arc / 2;
+        // const labelRadius = radius + 30;
+        // const x = 250 + Math.cos(midAngle) * labelRadius;
+        // const y = 250 + Math.sin(midAngle) * labelRadius;
+        // ctx.fillText(menus[i], x, y);
       }
 
       // 三角マーカー
@@ -122,7 +115,8 @@
         } else {
           spinning = false;
           const selected = Math.floor(size - (angle / arc) % size) % size;
-          document.getElementById("result").innerHTML = "👉 今日の晩ごはんは <b>" + menus[selected] + "</b>！";
+          document.getElementById("result").innerHTML = 
+            "👉 今日の晩ごはんは <b>" + menus[selected] + "</b>！";
         }
       }
       requestAnimationFrame(animate);

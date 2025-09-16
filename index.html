@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>サンプルページ </title>
+<style>
+* {box-sizing: border-box; margin: 0; padding: 0;}
+body{
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+background: linear-gradient(135deg, #fceff1 0%, #f8e4ea 50%, #f3dfe8 100%);
+color:#333;
+-webkit-font-smoothing:antialiased;
+line-height:1.5;
+min-height:100vh;
+padding-bottom:40px;
+transition: background 0.35s ease, color 0.35s ease;
+}
+
+.wrap{width: min(1100px, 94%); margin: 26px auto;}
+
+/* ヘッダー */
+header{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+.brand{display:flex; align-items:center; gap:12px;}
+.logo{
+width:56px;height:56px;border-radius:12px;
+background:linear-gradient(135deg,#f4c9d9,#f0a6c1);
+display:flex;align-items:center;justify-content:center;
+font-weight:700;font-size:20px;color:white;
+box-shadow:0 6px 18px rgba(180,120,140,0.2);
+}
+nav a{margin-left:14px; text-decoration:none; color:inherit; font-weight:600; opacity:0.85;}
+.btn{
+background:#e4a6b9;
+border:none; padding:10px 16px; border-radius:10px;
+color:white;font-weight:700; cursor:pointer;
+box-shadow:0 6px 18px rgba(180,120,140,0.25);
+transition: background .25s;
+}
+.btn:hover{background:#d791a6;}
+.btn.ghost{
+background:transparent;
+border:2px solid rgba(0,0,0,0.08);
+color:#555;
+}
+
+/* ヒーロー */
+.hero{
+background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+border-radius:16px;
+padding:28px;
+box-shadow: 0 10px 30px rgba(150,90,110,0.1);
+display:flex; gap:20px; align-items:center;
+margin-bottom:20px;
+}
+.hero h1{font-size: clamp(20px, 4vw, 34px); margin-bottom:6px;}
+.hero p{opacity:0.85;margin-bottom:12px;}
+
+.orbit{width:140px;height:140px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;animation:float 6s ease-in-out infinite;}
+.orbit .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#f3c1d7,#e59db7);box-shadow:0 6px 18px rgba(200,120,150,0.2);}
+@keyframes float{0%{transform: translateY(0) rotate(0deg)}50%{transform: translateY(-8px) rotate(180deg)}100%{transform: translateY(0) rotate(360deg)}}
+
+/* カード */
+.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.card{
+background:white;border-radius:12px;padding:16px;
+box-shadow:0 8px 20px rgba(180,120,140,0.12);
+transition:.3s;
+}
+.card:hover{transform: translateY(-6px); box-shadow:0 14px 28px rgba(180,120,140,0.18);}
+.card h3{margin-bottom:8px;font-size:18px;color:#d27a96;}
+.card p{font-size:14px;opacity:0.85;}
+
+footer{margin-top:18px;text-align:center;opacity:0.7;font-size:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="brand">
+<div class="logo">やー</div>
+<div>
+<div style="font-weight:800">miyunのページ</div>
+<div style="font-size:12px;opacity:0.7">くすみピンクなサンプルサイト ✨</div>
+</div>
+</div>
+<nav>
+<a href="#features">特徴</a>
+<a href="#works">作品</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="left">
+<h1>こんにちは、miyun.jpへようこそ！🌸</h1>
+<p>くすみピンクをベースにしたふんわり可愛いデザイン。💕</p>
+<button class="btn">はじめる</button>
+</div>
+<div class="orbit"><div class="dot"></div></div>
+</section>
+
+<main>
+<h2 id="features" style="margin-bottom:10px">特徴</h2>
+<div class="grid" style="margin-bottom:18px">
+<article class="card">
+<h3>柔らかい色合い</h3>
+<p>くすみピンクで目に優しい雰囲気を演出。</p>
+</article>
+<article class="card">
+<h3>シンプル</h3>
+<p>余白多めで、コンテンツが映えるデザイン。</p>
+</article>
+<article class="card">
+<h3>可愛いアクセント</h3>
+<p>丸みのあるボタンやカードで優しい印象。</p>
+</article>
+</div>
+</main>
+
+<footer>
+© <span id="year"></span> miyun
+</footer>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

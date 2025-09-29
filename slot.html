@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>お弁当スロット</title>
+  <style>
+    body {
+      font-family: "Hiragino Maru Gothic ProN", sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: #fffafc;
+    }
+    h1 { color: #ff6699; margin-bottom: 20px; }
+    .slot-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .slot {
+      width: 140px;
+      height: 160px;
+      border: 4px solid #ff99bb;
+      border-radius: 12px;
+      background: white;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #666;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 30px;
+      margin-top: 20px;
+      background: #ffccdd;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover { background: #ff99bb; }
+    #result {
+      font-size: 22px;
+      margin-top: 30px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍱 お弁当スロット 🎰</h1>
+  <div class="slot-container">
+    <div>
+      <div class="slot" id="slot1">？</div>
+      <div class="label">メイン</div>
+    </div>
+    <div>
+      <div class="slot" id="slot2">？</div>
+      <div class="label">副菜</div>
+    </div>
+    <div>
+      <div class="slot" id="slot3">？</div>
+      <div class="label">野菜</div>
+    </div>
+  </div>
+  <button onclick="spin()">回す！</button>
+  <div id="result"></div>
+
+  <script>
+    // メインのおかず
+    const mains = [
+      "唐揚げ","ハンバーグ","焼き鮭","エビフライ","コロッケ",
+      "チキン南蛮","アジフライ","豚の生姜焼き","鶏の照り焼き","ミートボール",
+      "とんかつ","牛肉コロッケ","鯖の味噌煮","ローストビーフ","チキンカツ",
+      "メンチカツ","焼き鳥","さんまの塩焼き","鮭フライ","厚切りベーコン"
+    ];
+
+    // 副菜のおかず
+    const sides = [
+      "卵焼き","シュウマイ","餃子","ポテトサラダ","きんぴらごぼう",
+      "ひじき煮","かぼちゃ煮","切り干し大根","ちくわの磯辺揚げ","厚揚げの煮物",
+      "春巻き","ツナマヨコロッケ","ちくわきゅうり","ごま団子","肉じゃが",
+      "クリームコロッケ","大根の煮物","蓮根はさみ揚げ","魚肉ソーセージ炒め","茶碗蒸し"
+    ];
+
+    // 野菜のおかず
+    const veggies = [
+      "ブロッコリー","枝豆","ほうれん草のおひたし","ナムル","キャベツの千切り",
+      "ピーマンの肉詰め","レンコンのきんぴら","きゅうりの浅漬け","トマト","さつまいもの甘煮",
+      "ポテトフライ","かいわれ大根","アスパラ炒め","ズッキーニのソテー","インゲンの胡麻和え",
+      "にんじんラペ","カリフラワーのマリネ","じゃがバター","小松菜炒め","白菜漬け"
+    ];
+
+    function getRandomItem(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function spin() {
+      let count = 20; // 回転アニメの回数
+      let interval = setInterval(() => {
+        document.getElementById("slot1").textContent = getRandomItem(mains);
+        document.getElementById("slot2").textContent = getRandomItem(sides);
+        document.getElementById("slot3").textContent = getRandomItem(veggies);
+        count--;
+        if (count <= 0) {
+          clearInterval(interval);
+          const result = [
+            document.getElementById("slot1").textContent,
+            document.getElementById("slot2").textContent,
+            document.getElementById("slot3").textContent
+          ];
+          document.getElementById("result").innerHTML =
+            "👉 今日のお弁当は <b>" + result.join("・") + "</b> に決定！";
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>

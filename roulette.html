@@ -31,6 +31,32 @@
       margin-top: 30px;
       color: #333;
     }
+
+    #menuList {
+  margin-top: 40px;
+  background: #fff0f5;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+  max-height: 300px;
+  overflow-y: auto;
+}
+#menuList h2 {
+  color: #ff6699;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+#menuList ul {
+  list-style: none;
+  padding: 0;
+  columns: 4;
+}
+#menuList li {
+  font-size: 16px;
+  padding: 4px 0;
+  color: #555;
+}
+
   </style>
 </head>
 <body>
@@ -38,6 +64,13 @@
   <canvas id="wheel" width="500" height="500"></canvas><br>
   <button onclick="spin()">回す！</button>
   <div id="result"></div>
+  <div id="menuList">
+  <h2>🍽 menu</h2>
+  <ul>
+    <!-- JavaScriptでここにメニューを追加します -->
+  </ul>
+</div>
+
 
   <script>
     const menus = [
@@ -80,13 +113,6 @@
         ctx.strokeStyle = "#fff";
         ctx.lineWidth = 1;
         ctx.stroke();
-
-        // ★ ラベル描画はしない（値は保持したまま）
-        // const midAngle = startAngle + arc / 2;
-        // const labelRadius = radius + 30;
-        // const x = 250 + Math.cos(midAngle) * labelRadius;
-        // const y = 250 + Math.sin(midAngle) * labelRadius;
-        // ctx.fillText(menus[i], x, y);
       }
 
       // 三角マーカー
@@ -121,6 +147,14 @@
       }
       requestAnimationFrame(animate);
     }
+
+    const menuListElement = document.querySelector("#menuList ul");
+menus.forEach(menu => {
+  const li = document.createElement("li");
+  li.textContent = menu;
+  menuListElement.appendChild(li);
+});
+
 
     drawWheel();
   </script>

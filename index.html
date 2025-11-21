@@ -1,130 +1,321 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>サンプルページ </title>
-<style>
-* {box-sizing: border-box; margin: 0; padding: 0;}
-body{
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
-background: linear-gradient(135deg, #fceff1 0%, #f8e4ea 50%, #f3dfe8 100%);
-color:#333;
--webkit-font-smoothing:antialiased;
-line-height:1.5;
-min-height:100vh;
-padding-bottom:40px;
-transition: background 0.35s ease, color 0.35s ease;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>miyun | Data & Creative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 変数定義（くすみピンクカラーパレット） --- */
+        :root {
+            --bg-color: #f9f4f4;         /* ほんのりピンクがかった白 */
+            --main-pink: #d8a7b1;        /* くすみピンク */
+            --accent-pink: #ef8d9c;      /* アクセント */
+            --text-color: #5d5050;       /* 柔らかいココアブラウン */
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(216, 167, 177, 0.2);
+        }
 
-.wrap{width: min(1100px, 94%); margin: 26px auto;}
+        /* --- 基本設定 --- */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
 
-/* ヘッダー */
-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
-.brand{display:flex; align-items:center; gap:12px;}
-.logo{
-width:56px;height:56px;border-radius:12px;
-background:linear-gradient(135deg,#f4c9d9,#f0a6c1);
-display:flex;align-items:center;justify-content:center;
-font-weight:700;font-size:20px;color:white;
-box-shadow:0 6px 18px rgba(180,120,140,0.2);
-}
-nav a{margin-left:14px; text-decoration:none; color:inherit; font-weight:600; opacity:0.85;}
-.btn{
-background:#e4a6b9;
-border:none; padding:10px 16px; border-radius:10px;
-color:white;font-weight:700; cursor:pointer;
-box-shadow:0 6px 18px rgba(180,120,140,0.25);
-transition: background .25s;
-}
-.btn:hover{background:#d791a6;}
-.btn.ghost{
-background:transparent;
-border:2px solid rgba(0,0,0,0.08);
-color:#555;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
 
-/* ヒーロー */
-.hero{
-background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
-border-radius:16px;
-padding:28px;
-box-shadow: 0 10px 30px rgba(150,90,110,0.1);
-display:flex; gap:20px; align-items:center;
-margin-bottom:20px;
-}
-.hero h1{font-size: clamp(20px, 4vw, 34px); margin-bottom:6px;}
-.hero p{opacity:0.85;margin-bottom:12px;}
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.orbit{width:140px;height:140px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;animation:float 6s ease-in-out infinite;}
-.orbit .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#f3c1d7,#e59db7);box-shadow:0 6px 18px rgba(200,120,150,0.2);}
-@keyframes float{0%{transform: translateY(0) rotate(0deg)}50%{transform: translateY(-8px) rotate(180deg)}100%{transform: translateY(0) rotate(360deg)}}
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* カード */
-.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(220px,1fr));gap:16px;}
-.card{
-background:white;border-radius:12px;padding:16px;
-box-shadow:0 8px 20px rgba(180,120,140,0.12);
-transition:.3s;
-}
-.card:hover{transform: translateY(-6px); box-shadow:0 14px 28px rgba(180,120,140,0.18);}
-.card h3{margin-bottom:8px;font-size:18px;color:#d27a96;}
-.card p{font-size:14px;opacity:0.85;}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--main-pink);
+            letter-spacing: 0.1em;
+        }
 
-footer{margin-top:18px;text-align:center;opacity:0.7;font-size:14px;}
-</style>
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a:hover {
+            color: var(--accent-pink);
+        }
+
+        /* --- ヒーローセクション --- */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle at top left, #fff0f3, transparent);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #887070;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--main-pink);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        /* --- 共通セクション --- */
+        section {
+            padding: 60px 10%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--main-pink);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--main-pink);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Profile (ご自身の情報) --- */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .profile-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-card h3 {
+            color: var(--main-pink);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #f4e4e7;
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* --- Features (特徴) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- Games (リンク作成済み) --- */
+        .games-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, #fff, #fff0f3);
+            width: 200px;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: var(--main-pink);
+            transform: translateY(-5px);
+        }
+
+        .game-card h3 {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        /* --- フッター --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 40px 5%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-<div class="brand">
-<div class="logo">`miyun</div>
-<div>
-<div style="font-weight:800">miyunのページ</div>
-<div style="font-size:12px;opacity:0.7">くすみピンクなサンプルサイト ✨</div>
-</div>
-</div>
-<nav>
-  <a href="#features">特徴</a>
-  <a href="#works">作品</a>
-  <a href="roulette.html" class="btn">ルーレット</a>
-</nav>
-</header>
 
-<section class="hero">
-<div class="left">
-<h1>こんにちは、miyun.jpへようこそ！🌸</h1>
-<p>くすみピンクをベースにしたふんわり可愛いデザイン。💕</p>
-<button class="btn">はじめる</button>
-</div>
-<div class="orbit"><div class="dot"></div></div>
-</section>
+    <header>
+        <div class="logo">miyun.jp</div>
+        <nav>
+            <ul>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#games">Games</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<main>
-<h2 id="features" style="margin-bottom:10px">特徴</h2>
-<div class="grid" style="margin-bottom:18px">
-<article class="card">
-<h3>柔らかい色合い</h3>
-<p>くすみピンクで目に優しい雰囲気を演出。</p>
-</article>
-<article class="card">
-<h3>シンプル</h3>
-<p>余白多めで、コンテンツが映えるデザイン。</p>
-</article>
-<article class="card">
-<h3>可愛いアクセント</h3>
-<p>丸みのあるボタンやカードで優しい印象。</p>
-</article>
-</div>
-</main>
+    <div class="hero">
+        <h1>Welcome to miyun.jp 🌸</h1>
+        <p>くすみピンクをベースにした、ふんわり可愛いデザイン。<br>
+        データと感性を紡ぐ、私のポートフォリオサイトへようこそ。</p>
+        <a href="#profile" class="btn-primary">はじめる</a>
+    </div>
 
-<footer>
-© <span id="year"></span> miyun
-</footer>
-</div>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    <section id="profile">
+        <h2 class="section-title">About Me</h2>
+        <div class="profile-grid">
+            <div class="profile-card">
+                <h3>👩‍💻 Work & Interest</h3>
+                <p>データ分析とAIサービスの開発に取り組んでいます。最近は技術だけでなく、ビジネス全体を俯瞰するマーケティングや経営分野にも興味を広げています。</p>
+                <div style="margin-top:15px;">
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">AI Service</span>
+                    <span class="tag">Marketing</span>
+                    <span class="tag">Business</span>
+                </div>
+            </div>
+            <div class="profile-card">
+                <h3>🧶 Hobbies & Life</h3>
+                <p>デジタルな日常の癒やしは、アナログな手触りとスローライフ。「あつまれ どうぶつの森」での島作りや、無心になれる編み物が大好きです。</p>
+                <div style="margin-top:15px;">
+                    <span class="tag">あつ森</span>
+                    <span class="tag">編み物</span>
+                    <span class="tag">Cafe巡り</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title">Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">🎨</span>
+                <h3>柔らかい色合い</h3>
+                <p>くすみピンクを基調とし、長時間見ていても目に優しい雰囲気を演出しています。</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">✨</span>
+                <h3>シンプル</h3>
+                <p>余白を多めに取り、コンテンツそのものが綺麗に映えるデザインを心がけました。</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">💕</span>
+                <h3>可愛いアクセント</h3>
+                <p>丸みのあるボタンやカードデザインを採用し、優しく親しみやすい印象に。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="games">
+        <h2 class="section-title">Play Area</h2>
+        <p style="text-align: center; margin-bottom: 30px;">作成したコンテンツへのリンクです。</p>
+        
+        <div class="games-container">
+            <a href="roulette.html" class="game-card">
+                <div style="font-size: 3rem;">🎡</div>
+                <h3>Roulette</h3>
+                <p>運試しはいかが？<br>ルーレットを回す</p>
+            </a>
+
+            <a href="slot.html" class="game-card">
+                <div style="font-size: 3rem;">🎰</div>
+                <h3>Slot Game</h3>
+                <p>揃うと嬉しい！<br>スロットで遊ぶ</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 miyun All Rights Reserved.</p>
+    </footer>
+
 </body>
-
 </html>

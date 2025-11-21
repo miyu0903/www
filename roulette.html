@@ -2,77 +2,181 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>晩ごはんルーレット</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>晩ごはんルーレット | miyun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
-    body { 
-      font-family: "Hiragino Maru Gothic ProN", sans-serif; 
-      text-align: center; 
-      padding: 30px; 
-      background: #fffafc;
+    /* --- 変数定義（トップページと共通） --- */
+    :root {
+        --bg-color: #f9f4f4;
+        --main-pink: #d8a7b1;
+        --accent-pink: #ef8d9c;
+        --text-color: #5d5050;
+        --white: #ffffff;
+        --shadow: 0 4px 15px rgba(216, 167, 177, 0.2);
     }
-    h1 { color: #ff6699; }
+
+    body { 
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      text-align: center; 
+      padding: 30px 10px; 
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    h1 { 
+      color: var(--main-pink); 
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    /* --- ナビゲーション --- */
+    .nav-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #999;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .nav-link:hover {
+        color: var(--accent-pink);
+    }
+
+    /* --- ルーレットエリア --- */
     canvas {
       margin-top: 20px;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    button {
-      font-size: 20px;
-      padding: 10px 30px;
-      margin-top: 20px;
-      background: #ffccdd;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    button:hover { background: #ff99bb; }
-    #result {
-      font-size: 24px;
-      margin-top: 30px;
-      color: #333;
+      box-shadow: var(--shadow);
+      max-width: 100%; /* スマホ対応 */
+      height: auto;
     }
 
+    /* --- ボタン --- */
+    button {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 12px 40px;
+      margin-top: 30px;
+      background-color: var(--main-pink);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    button:hover { 
+      background-color: var(--accent-pink); 
+      transform: translateY(-2px);
+    }
+
+    /* --- 結果表示 --- */
+    #result {
+      font-size: 1.4rem;
+      margin-top: 30px;
+      color: var(--text-color);
+      min-height: 1.5em; /* ガタつき防止 */
+    }
+    
+    #result b {
+        color: var(--accent-pink);
+        font-size: 1.6rem;
+    }
+
+    /* --- メニューリスト（カードデザイン） --- */
     #menuList {
-  margin-top: 40px;
-  background: #fff0f5;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
-  max-height: 300px;
-  overflow-y: auto;
-}
-#menuList h2 {
-  color: #ff6699;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-#menuList ul {
-  list-style: none;
-  padding: 0;
-  columns: 4;
-}
-#menuList li {
-  font-size: 16px;
-  padding: 4px 0;
-  color: #555;
-}
+      margin: 40px auto 0;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+    }
+
+    #menuList h2 {
+      color: var(--main-pink);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f4e4e7;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .scroll-box {
+        max-height: 300px;
+        overflow-y: auto;
+        /* スクロールバーのデザイン（Chrome/Safari） */
+        scrollbar-width: thin;
+        scrollbar-color: var(--main-pink) #f0f0f0;
+    }
+    
+    /* Chrome, Safari, Edge用スクロールバー */
+    .scroll-box::-webkit-scrollbar {
+        width: 8px;
+    }
+    .scroll-box::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 4px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+        background-color: var(--main-pink);
+        border-radius: 4px;
+    }
+
+    #menuList ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* 自動で列調整 */
+      gap: 10px;
+      text-align: left;
+    }
+
+    #menuList li {
+      font-size: 0.9rem;
+      padding: 5px 10px;
+      color: #887070;
+      background-color: #fffcfd;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    #menuList li:hover {
+        background-color: #fff0f3;
+        color: var(--accent-pink);
+    }
 
   </style>
 </head>
 <body>
-  <h1>🍴 晩ごはんルーレット 🎰</h1>
-  <canvas id="wheel" width="500" height="500"></canvas><br>
-  <button onclick="spin()">回す！</button>
-  <div id="result"></div>
-  <div id="menuList">
-  <h2>🍽 menu</h2>
-  <ul>
-    <!-- JavaScriptでここにメニューを追加します -->
-  </ul>
-</div>
 
+  <a href="index.html" class="nav-link">← Homeに戻る</a>
+
+  <h1>🍴 晩ごはんルーレット 🎰</h1>
+  <p style="color:#887070; font-size:0.9rem;">今日のご飯に迷ったら、運に任せてみましょう。</p>
+
+  <canvas id="wheel" width="500" height="500"></canvas><br>
+  
+  <button onclick="spin()">START!</button>
+  
+  <div id="result"></div>
+
+  <div id="menuList">
+    <h2>🍽 Menu List</h2>
+    <div class="scroll-box">
+        <ul>
+            </ul>
+    </div>
+  </div>
 
   <script>
+    // メニューデータ（そのまま引き継ぎ）
     const menus = [
       "サバの塩焼き定食","肉じゃが","鶏の照り焼き","生姜焼き","豚汁＋おにぎり","サーモンのホイル焼き","鯖味噌煮","親子丼","天ぷら盛り合わせ","筑前煮",
       "ぶり大根","さばの竜田揚げ","いわしの梅煮","だし巻き卵＋焼き魚定食","かき揚げそば","鶏団子の塩ちゃんこ鍋","湯豆腐","ほっけの開き","うな丼","茶碗蒸し＋炊き込みご飯",
@@ -95,41 +199,47 @@
     let spinning = false;
 
     function drawWheel() {
-      const radius = 200; // ルーレットの半径
+      const radius = 200; 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < size; i++) {
         const startAngle = arc * i + angle;
         const endAngle = startAngle + arc;
 
-        // セクター描画
+        // セクター描画（色をくすみピンク系に変更）
         ctx.beginPath();
         ctx.moveTo(250, 250);
         ctx.arc(250, 250, radius, startAngle, endAngle);
-        ctx.fillStyle = i % 2 === 0 ? "#ffe6ee" : "#ffccd9";
+        // 交互に色を変える（淡いピンク系で統一）
+        ctx.fillStyle = i % 2 === 0 ? "#f4e4e7" : "#eac8d0"; 
         ctx.fill();
 
-        // 枠線（白）
-        ctx.strokeStyle = "#fff";
+        // 枠線（背景色と同じにして馴染ませる）
+        ctx.strokeStyle = "#f9f4f4";
         ctx.lineWidth = 1;
         ctx.stroke();
       }
 
-      // 三角マーカー
-      ctx.fillStyle = "#ff0000";
+      // 三角マーカー（アクセントカラーに変更）
+      ctx.fillStyle = "#ef8d9c"; 
       ctx.beginPath();
       ctx.moveTo(250, 20);
-      ctx.lineTo(240, 40);
-      ctx.lineTo(260, 40);
+      ctx.lineTo(240, 50); // 少し長くしました
+      ctx.lineTo(260, 50);
       ctx.closePath();
       ctx.fill();
+      
+      // マーカーの縁取り
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 2;
+      ctx.stroke();
     }
 
     function spin() {
       if (spinning) return;
       spinning = true;
-      spinAngle = Math.random() * 5000 + 2000; // 回転角度
-      const duration = 4000; // 4秒回転
+      spinAngle = Math.random() * 5000 + 2000; 
+      const duration = 4000; 
       const start = performance.now();
 
       function animate(time) {
@@ -148,15 +258,16 @@
       requestAnimationFrame(animate);
     }
 
+    // メニューリストの生成
     const menuListElement = document.querySelector("#menuList ul");
-menus.forEach(menu => {
-  const li = document.createElement("li");
-  li.textContent = menu;
-  menuListElement.appendChild(li);
-});
-
+    menus.forEach(menu => {
+      const li = document.createElement("li");
+      li.textContent = menu;
+      menuListElement.appendChild(li);
+    });
 
     drawWheel();
   </script>
 </body>
 </html>
+

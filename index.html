@@ -316,6 +316,7 @@
     <footer>
         <p>&copy; 2025 miyun All Rights Reserved.</p>
     </footer>
+
 <script>
  window.difyChatbotConfig = {
   token: 'xSQoIA4GsIemvRL5',
@@ -342,16 +343,33 @@
 </script>
 <style>
   #dify-chatbot-bubble-button {
-    background-color: #1C64F2 !important;
+    background-color: #d8a7b1 !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
   }
+  
   #dify-chatbot-bubble-window {
     width: 24rem !important;
     height: 40rem !important;
+    position: fixed !important;
+    bottom: 90px !important;
+    right: 20px !important;
+    z-index: 9998 !important;
+  }
+  
+  /* スマホ対応 */
+  @media (max-width: 768px) {
+    #dify-chatbot-bubble-window {
+      width: calc(100vw - 40px) !important;
+      height: 70vh !important;
+      right: 20px !important;
+      left: 20px !important;
+      bottom: 90px !important;
+    }
   }
 </style>
 
 </body>
 </html>
-
-
-

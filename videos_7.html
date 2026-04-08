@@ -56,7 +56,6 @@ section {
 
 .section-title {
     text-align: center;
-    color: var(--text-color);
     font-weight: 500;
     font-size: 1.4rem;
     margin-bottom: 40px;
@@ -98,24 +97,12 @@ section {
     padding: 20px;
 }
 
-.video-content h3 {
-    color: var(--text-color);
-    font-weight: 500;
-}
-
 .comment {
     background: #f5f5f5;
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
     font-size: 0.9rem;
-}
-
-.empty-message {
-    text-align: center;
-    color: #999;
-    font-size: 1rem;
-    padding: 40px;
 }
 </style>
 </head>
@@ -130,70 +117,57 @@ section {
 <section>
     <h2 class="section-title">🎬 理外の実写</h2>
 
-    <div class="video-card">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://youtu.be/ncv7p3LBRxY?si=_JkreO1wq5w_5r3X"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-content">
-                <h3>お雑煮 ①</h3>
-                <p class="comment">普段全然料理をしない男が仲間たちにお雑煮を振る舞うサプライズを目論むが・・・！？</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="video-card">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://youtu.be/p2_XhM0QHx4?si=aWw0rxJEvfHnxQer"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-content">
-                <h3>お雑煮 ②</h3>
-                <p class="comment">お雑煮にいたる経緯と、何が起こったかの話。</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="video-card">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://youtu.be/OlpGXAyaweM?si=BRliOpM4l-7e3qTJ"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-content">
-                <h3>ラーメン ①</h3>
-                <p class="comment">翌年、お雑煮のリベンジとしてラーメンを振る舞う。『つかしお』爆誕。</p>
-            </div>
-        </div>
-    </div>
+    <div class="video-grid">
 
         <div class="video-card">
             <div class="video-wrapper">
-                <iframe 
-                    src="https://youtu.be/4zBUAK6bFuM?si=K5rayhZN94Ua5h25"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/ncv7p3LBRxY" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-content">
+                <h3>お雑煮 ①</h3>
+                <p class="comment">
+                普段全然料理をしない男が仲間たちにお雑煮を振る舞うサプライズを目論むが・・・！？
+                </p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/p2_XhM0QHx4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-content">
+                <h3>お雑煮 ②</h3>
+                <p class="comment">
+                お雑煮にいたる経緯と、何が起こったかの話。
+                </p>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/OlpGXAyaweM" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="video-content">
                 <h3>ラーメン ①</h3>
-                <p class="comment">さらに翌年、つかしおは進化する…！つかしお商品化希望。</p>
+                <p class="comment">
+                翌年、お雑煮のリベンジとしてラーメンを振る舞う。『つかしお』爆誕。
+                </p>
             </div>
         </div>
-    </div>
 
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/4zBUAK6bFuM" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-content">
+                <h3>ラーメン ②</h3>
+                <p class="comment">
+                さらに翌年、つかしおは進化する…！つかしお商品化希望。
+                </p>
+            </div>
+        </div>
+
+    </div>
 
 </section>
 

@@ -9,17 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 変数定義（くすみピンクカラーパレット） --- */
         :root {
-            --bg-color: #f9f4f4;         /* ほんのりピンクがかった白 */
-            --main-pink: #d8a7b1;        /* くすみピンク */
-            --accent-pink: #ef8d9c;      /* アクセント */
-            --text-color: #5d5050;       /* 柔らかいココアブラウン */
+            --bg-color: #f9f4f4;
+            --main-pink: #d8a7b1;
+            --accent-pink: #ef8d9c;
+            --text-color: #5d5050;
             --white: #ffffff;
             --shadow: 0 4px 15px rgba(216, 167, 177, 0.2);
         }
 
-        /* --- 基本設定 --- */
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
             background-color: var(--bg-color);
@@ -40,7 +38,6 @@
             padding: 0;
         }
 
-        /* --- ヘッダー --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -69,7 +66,6 @@
             color: var(--accent-pink);
         }
 
-        /* --- ヒーローセクション --- */
         .hero {
             text-align: center;
             padding: 100px 20px;
@@ -103,7 +99,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- 共通セクション --- */
         section {
             padding: 60px 10%;
             max-width: 1000px;
@@ -128,7 +123,6 @@
             border-radius: 2px;
         }
 
-        /* --- Profile (ご自身の情報) --- */
         .profile-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -159,7 +153,6 @@
             margin-bottom: 5px;
         }
 
-        /* --- Features (特徴) --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -177,7 +170,6 @@
             display: block;
         }
 
-        /* --- Games (リンク作成済み) --- */
         .games-container {
             display: flex;
             justify-content: center;
@@ -207,7 +199,6 @@
             font-size: 1.2rem;
         }
 
-        /* --- フッター --- */
         footer {
             text-align: center;
             padding: 40px;
@@ -217,7 +208,6 @@
             margin-top: 50px;
         }
 
-        /* --- スマホ対応 --- */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -230,153 +220,98 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">miyun.jp</div>
-        <nav>
-            <ul>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#games">Games</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo">miyun.jp</div>
+    <nav>
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#games">Games</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <div class="hero">
-        <h1>Welcome to miyun.jp 🌸</h1>
-        <p>くすみピンクをベースにしたふんわり可愛いデザイン。<br>
-        miyunの"好き！"が詰まったポートフォリオサイトへようこそ🩷</p>
-        <a href="#profile" class="btn-primary">はじめる</a>
+<div class="hero">
+    <h1>Welcome to miyun.jp 🌸</h1>
+    <p>くすみピンクをベースにしたふんわり可愛いデザイン。<br>
+    miyunの"好き！"が詰まったポートフォリオサイトへようこそ🩷</p>
+    <a href="#profile" class="btn-primary">はじめる</a>
+</div>
+
+<section id="profile">
+    <h2 class="section-title">About Me</h2>
+    <div class="profile-grid">
+        <div class="profile-card">
+            <h3>👩‍💻 Work & Interest</h3>
+            <p>データ分析とAIサービスの開発に取り組んでいます。最近はシステム開発だけでなく、ビジネス全体を俯瞰するマーケティングや経営分野にも興味を広げています。</p>
+            <div style="margin-top:15px;">
+                <span class="tag">Data Analysis</span>
+                <span class="tag">AI Service</span>
+                <span class="tag">Marketing</span>
+                <span class="tag">Business</span>
+            </div>
+        </div>
+        <div class="profile-card">
+            <h3>🧶 Hobbies & Life</h3>
+            <p>デジタルな日常の癒やしは、アナログな手触りとスローライフ。「あつまれ どうぶつの森」での島作りや、無心になれる編み物が大好きです。</p>
+            <div style="margin-top:15px;">
+                <span class="tag">あつ森</span>
+                <span class="tag">編み物</span>
+                <span class="tag">Cafe巡り</span>
+            </div>
+        </div>
     </div>
+</section>
 
-    <section id="profile">
-        <h2 class="section-title">About Me</h2>
-        <div class="profile-grid">
-            <div class="profile-card">
-                <h3>👩‍💻 Work & Interest</h3>
-                <p>データ分析とAIサービスの開発に取り組んでいます。最近はシステム開発だけでなく、ビジネス全体を俯瞰するマーケティングや経営分野にも興味を広げています。</p>
-                <div style="margin-top:15px;">
-                    <span class="tag">Data Analysis</span>
-                    <span class="tag">AI Service</span>
-                    <span class="tag">Marketing</span>
-                    <span class="tag">Business</span>
-                </div>
-            </div>
-            <div class="profile-card">
-                <h3>🧶 Hobbies & Life</h3>
-                <p>デジタルな日常の癒やしは、アナログな手触りとスローライフ。「あつまれ どうぶつの森」での島作りや、無心になれる編み物が大好きです。</p>
-                <div style="margin-top:15px;">
-                    <span class="tag">あつ森</span>
-                    <span class="tag">編み物</span>
-                    <span class="tag">Cafe巡り</span>
-                </div>
-            </div>
+<section id="features">
+    <h2 class="section-title">Features</h2>
+    <div class="features-grid">
+        <div class="feature-item">
+            <span class="feature-icon">🎨</span>
+            <h3>柔らかい色合い</h3>
+            <p>くすみピンクを基調とし、長時間見ていても目に優しい雰囲気を演出しています。</p>
         </div>
-    </section>
-
-    <section id="features">
-        <h2 class="section-title">Features</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <span class="feature-icon">🎨</span>
-                <h3>柔らかい色合い</h3>
-                <p>くすみピンクを基調とし、長時間見ていても目に優しい雰囲気を演出しています。</p>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">✨</span>
-                <h3>シンプル</h3>
-                <p>余白を多めに取り、コンテンツそのものが綺麗に映えるデザインを心がけました。</p>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">💕</span>
-                <h3>可愛いアクセント</h3>
-                <p>丸みのあるボタンやカードデザインを採用し、優しく親しみやすい印象に。</p>
-            </div>
+        <div class="feature-item">
+            <span class="feature-icon">✨</span>
+            <h3>シンプル</h3>
+            <p>余白を多めに取り、コンテンツそのものが綺麗に映えるデザインを心がけました。</p>
         </div>
-    </section>
+        <div class="feature-item">
+            <span class="feature-icon">💕</span>
+            <h3>可愛いアクセント</h3>
+            <p>丸みのあるボタンやカードデザインを採用し、優しく親しみやすい印象に。</p>
+        </div>
+    </div>
+</section>
 
-    <section id="games">
-        <h2 class="section-title">Play Area</h2>
-        <p style="text-align: center; margin-bottom: 30px;">作成したコンテンツへのリンクです。</p>
+<section id="games">
+    <h2 class="section-title">Play Area</h2>
+    <p style="text-align: center; margin-bottom: 30px;">作成したコンテンツへのリンクです。</p>
+    
+    <div class="games-container">
+        <a href="roulette.html" class="game-card">
+            <div style="font-size: 3rem;">🎡</div>
+            <h3>Roulette</h3>
+            <p>今日の晩ご飯は何にしよう？<br>ルーレットを回す</p>
+        </a>
+
+        <a href="slot.html" class="game-card">
+            <div style="font-size: 3rem;">🎰</div>
+            <h3>Slot Game</h3>
+            <p>美味しいお弁当で元気チャージ！<br>スロットで遊ぶ</p>
+        </a>
         
-        <div class="games-container">
-            <a href="roulette.html" class="game-card">
-                <div style="font-size: 3rem;">🎡</div>
-                <h3>Roulette</h3>
-                <p>今日の晩ご飯は何にしよう？<br>ルーレットを回す</p>
-            </a>
+        <a href="video_list.html" class="game-card">
+            <div style="font-size: 3rem;">🎥</div>
+            <h3>Video Picks</h3>
+            <p>おすすめYouTubeまとめ💬<br>動画を見る</p>
+        </a>
+    </div>
+</section>
 
-            <a href="slot.html" class="game-card">
-                <div style="font-size: 3rem;">🎰</div>
-                <h3>Slot Game</h3>
-                <p>美味しいお弁当で元気チャージ！<br>スロットで遊ぶ</p>
-            </a>
-            
-            <a href="video_list.html" class="game-card">
-                <div style="font-size: 3rem;">🎥</div>
-                <h3>Video Picks</h3>
-                <p>おすすめYouTubeまとめ💬<br>動画を見る</p>
-            </a>
-
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 miyun All Rights Reserved.</p>
-    </footer>
-
-<script>
- window.difyChatbotConfig = {
-  token: 'xSQoIA4GsIemvRL5',
-  inputs: {
-    // You can define the inputs from the Start node here
-    // key is the variable name
-    // e.g.
-    // name: "NAME"
-  },
-  systemVariables: {
-    // user_id: 'YOU CAN DEFINE USER ID HERE',
-    // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
-  },
-  userVariables: {
-    // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
-    // name: 'YOU CAN DEFINE USER NAME HERE',
-  },
- }
-</script>
-<script
- src="https://udify.app/embed.min.js"
- id="xSQoIA4GsIemvRL5"
- defer>
-</script>
-<style>
-  #dify-chatbot-bubble-button {
-    background-color: #d8a7b1 !important;
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    z-index: 9999 !important;
-  }
-  
-  #dify-chatbot-bubble-window {
-    width: 24rem !important;
-    height: 40rem !important;
-    position: fixed !important;
-    bottom: 90px !important;
-    right: 20px !important;
-    z-index: 9998 !important;
-  }
-  
-  /* スマホ対応 */
-  @media (max-width: 768px) {
-    #dify-chatbot-bubble-window {
-      width: calc(100vw - 40px) !important;
-      height: 70vh !important;
-      right: 20px !important;
-      left: 20px !important;
-      bottom: 90px !important;
-    }
-  }
-</style>
+<footer>
+    <p>&copy; 2025 miyun All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
